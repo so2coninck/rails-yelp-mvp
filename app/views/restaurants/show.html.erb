@@ -1,0 +1,22 @@
+<%= @restaurant.name %>
+
+<%= @restaurant.address %>
+
+<%= @restaurant.category %>
+
+<%= link_to "all the restaurants", restaurants_path %>
+
+<%= link_to "edit this restaurant", edit_restaurant_path(@restaurant) %>
+
+<%= link_to "delete this restaurant", restaurant_path(@restaurant), method: :delete %>
+
+<% @restaurant.reviews.each do |review| %>
+<%= review.content %>
+<%end%>
+
+<%= simple_form_for [@restaurant, @review] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+
+  <%= f.submit "add a review", class: "btn btn-primary" %>
+<% end %>
